@@ -1,5 +1,7 @@
 ﻿using Aplicacion.Helper.Comportamientos;
 using Aplicacion.Infraestructura.Persistencia;
+using Aplicacion.Infraestructura.RegistroCivil.Implementaciones;
+using Aplicacion.Infraestructura.RegistroCivil.Interfaces;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +25,6 @@ namespace Aplicacion
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             services.AddLogging();
 
-
             services.AddDbContext<ContextoDB>(options =>
             {
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
@@ -33,6 +34,8 @@ namespace Aplicacion
             ServiceLifetime.Transient);
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(Validacion<,>));
+
+            services.AddScoped<IRegistroCivil,RegistroCivilLocal>();
 
             return services;
         }

@@ -8,5 +8,8 @@ namespace Aplicacion.Infraestructura.RegistroCivil.Interfaces
 {
     public interface IRegistroCivil
     {
+        Task<bool> ValidarDatosCedula(string cedula, string codigoDactilar);
+
+        Task<bool> ValidarRostro(string rostroBase64);
     }
 }

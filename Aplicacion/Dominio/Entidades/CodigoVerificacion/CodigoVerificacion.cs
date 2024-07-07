@@ -6,14 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion.Dominio.Entidades.Cuenta
+namespace Aplicacion.Dominio.Entidades.CodigoVerificacion
 {
-    public class Cuenta:EntidadBase
+    public class CodigoVerificacion:EntidadBase
     {
-        public string Numero { get; set; } = string.Empty;
-        public double Saldo { get; set; }
+        public string Codigo { get; set; } =  string.Empty;
+        public DateTime FechaExpiracion { get; set; }
         public int IdUsuario { get; set; }
-        public bool Inactivo { get; set; } = false;
         public Usuario.Usuario Usuario { get; set; } = new();
     }
 }

@@ -5,6 +5,6 @@ namespace ApiBanca.Controllers
 {
     public class AutenticacionController : ApiBaseController
     {
-    
+        
     }
 }
