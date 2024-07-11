@@ -26,7 +26,34 @@ namespace Aplicacion.Dominio.Entidades.Usuario
         public bool AceptoTerminosYConcidiones { get; set; } = false;
         public bool CodigoVerificado { get; set; } = false;
         public bool Inactivo { get; set; } = false;
-        public List<Cuenta.Cuenta> Cuentas { get; set; } = new();
-        public List<CodigoVerificacion.CodigoVerificacion> CodigosDeVerificacion { get; set; } = new();
+        public List<Cuenta.Cuenta> Cuentas { get; } = new();
+        public List<CodigoVerificacion.CodigoVerificacion> CodigosDeVerificacion { get; } = new();
+
+        public Usuario()
+        {
+            
+        }
+        public Usuario(string nombres, string apellidos, string cedula, string codigoDactilar, string email, 
+            string provincia, string situacionLaboral, string? empresa, string paisPagoImpuestos, bool aceptoTerminosYCondiciones)
+        {
+            this.Nombres = nombres;
+            this.Apellidos = apellidos;
+            this.Cedula = cedula;
+            this.CodigoDactilar = codigoDactilar;
+            this.Email = email;
+            this.Provincia = provincia;
+            this.SituacionLaboral = situacionLaboral;
+            this.Empresa = empresa;
+            this.PaisPagoImpuestos = paisPagoImpuestos;
+            this.AceptoTerminosYConcidiones = aceptoTerminosYCondiciones;
+        }
+
+        public static Usuario CrearUsuario(string nombres, string apellidos, string cedula, string codigoDactilar, string email,
+            string provincia, string situacionLaboral, string? empresa, string paisPagoImpuestos, bool aceptoTerminosYCondiciones)
+        {
+            var usuario = new Usuario(nombres, apellidos, cedula, codigoDactilar, email, provincia, situacionLaboral, empresa, paisPagoImpuestos, aceptoTerminosYCondiciones);
+            return usuario;
+        }
+
     }
 }

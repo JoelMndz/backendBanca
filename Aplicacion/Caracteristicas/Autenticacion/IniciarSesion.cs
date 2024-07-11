@@ -8,5 +8,6 @@ namespace Aplicacion.Caracteristicas.Autenticacion
 {
     internal class IniciarSesion
     {
+        // BCrypt.Net.BCrypt.Verify(password, hashedPassword);
     }
 }

@@ -14,6 +14,7 @@ namespace Aplicacion.Dominio.Entidades.Cuenta
         public double Saldo { get; set; }
         public int IdUsuario { get; set; }
         public bool Inactivo { get; set; } = false;
-        public Usuario.Usuario Usuario { get; set; } = new();
+        public Usuario.Usuario Usuario { get; set; } = null!;
+
     }
 }

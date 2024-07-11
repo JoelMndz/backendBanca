@@ -45,7 +45,7 @@ namespace Aplicacion.Infraestructura.Persistencia.Configuracion
 
 
             entity.Property(x => x.Password)
-                .HasMaxLength(50)
+                .HasMaxLength(2048)
                 .IsUnicode(false)
                 .IsRequired(true);
 

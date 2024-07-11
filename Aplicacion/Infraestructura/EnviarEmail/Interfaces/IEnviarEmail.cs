@@ -8,5 +8,6 @@ namespace Aplicacion.Infraestructura.EnviarEmail.Interfaces
 {
     public interface IEnviarEmail
     {
+        Task Ejecutar(string destinatario, string asunto, string cuerpo, CancellationToken cancellationToken);
     }
 }

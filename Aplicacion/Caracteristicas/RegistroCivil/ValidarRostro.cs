@@ -12,13 +12,13 @@ namespace Aplicacion.Caracteristicas.RegistroCivil
 {
     public class ValidarRostro
     {
-        public record DatosValidarRostro(string Base64);
+        public record DatosValidarRostro(string RostroBase64);
         public record Comando(DatosValidarRostro DatosValidarRostro) : IRequest<RespuestaDTO>;
         public class Validador : AbstractValidator<Comando>
         {
             public Validador()
             {
-                RuleFor(x => x.DatosValidarRostro.Base64)
+                RuleFor(x => x.DatosValidarRostro.RostroBase64)
                     .NotEmpty();
             }
         }
@@ -33,7 +33,7 @@ namespace Aplicacion.Caracteristicas.RegistroCivil
 
             public async Task<RespuestaDTO> Handle(Comando request, CancellationToken cancellationToken)
             {
-                var rostroValido = await registroCivil.ValidarRostro(request.DatosValidarRostro.Base64);
+                var rostroValido = await registroCivil.ValidarRostro(request.DatosValidarRostro.RostroBase64);
                 rostroValido.Throw(x => new Exception("El rostro no es válido")).IfFalse();
                 return new RespuestaDTO("Rostro válido");
             }

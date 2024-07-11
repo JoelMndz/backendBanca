@@ -1,5 +1,8 @@
 ﻿using Aplicacion.Helper.Comportamientos;
+using Aplicacion.Infraestructura.EnviarEmail.Implementaciones;
+using Aplicacion.Infraestructura.EnviarEmail.Interfaces;
 using Aplicacion.Infraestructura.Persistencia;
+using Aplicacion.Infraestructura.Persistencia.Interceptores;
 using Aplicacion.Infraestructura.RegistroCivil.Implementaciones;
 using Aplicacion.Infraestructura.RegistroCivil.Interfaces;
 using FluentValidation;
@@ -20,6 +23,10 @@ namespace Aplicacion
     {
         public static IServiceCollection AddAplicacion(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddScoped<IRegistroCivil,RegistroCivilLocal>();
+            services.AddScoped<IEnviarEmail, EnviarEmailGmail>();
+            services.AddScoped<InterceptorDespachadorEventos>();
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
@@ -35,7 +42,6 @@ namespace Aplicacion
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(Validacion<,>));
 
-            services.AddScoped<IRegistroCivil,RegistroCivilLocal>();
 
             return services;
         }

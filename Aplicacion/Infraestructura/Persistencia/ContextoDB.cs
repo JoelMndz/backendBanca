@@ -2,6 +2,7 @@
 using Aplicacion.Dominio.Entidades.Cuenta;
 using Aplicacion.Dominio.Entidades.Usuario;
 using Aplicacion.Infraestructura.Persistencia.Configuracion;
+using Aplicacion.Infraestructura.Persistencia.Interceptores;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,15 @@ namespace Aplicacion.Infraestructura.Persistencia
 {
     public partial class ContextoDB:DbContext
     {
+        private readonly InterceptorDespachadorEventos interceptorDespachadorEventos;
         public ContextoDB() { }
-        public ContextoDB(DbContextOptions<ContextoDB> options)
-            : base(options) { }
+        public ContextoDB(
+            DbContextOptions<ContextoDB> options,
+            InterceptorDespachadorEventos interceptorDespachadorEventos)
+            : base(options) 
+        {
+            this.interceptorDespachadorEventos = interceptorDespachadorEventos;
+        }
 
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Cuenta> Cuenta { get; set; }
@@ -30,7 +37,11 @@ namespace Aplicacion.Infraestructura.Persistencia
             OnModelCreatingPartial(modelBuilder);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => base.OnConfiguring(optionsBuilder);
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.AddInterceptors(this.interceptorDespachadorEventos);
+            base.OnConfiguring(optionsBuilder);
+        }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }

@@ -9,12 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Throw;
 
-namespace Aplicacion.Caracteristicas.Usuario
+namespace Aplicacion.Caracteristicas.RegistroCivil
 {
     public class ValidarCedula
     {
         public record DatosValidarCedula(string Cedula, string CodigoDactilar);
-        public record Comando(DatosValidarCedula DatosValidarCedula) :IRequest<RespuestaDTO>;
+        public record Comando(DatosValidarCedula DatosValidarCedula) : IRequest<RespuestaDTO>;
         public class Validador : AbstractValidator<Comando>
         {
             public Validador()
