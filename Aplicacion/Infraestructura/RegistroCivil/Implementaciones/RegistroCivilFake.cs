@@ -17,6 +17,10 @@ namespace Aplicacion.Infraestructura.RegistroCivil.Implementaciones
 
         public ContextoDB contexto { get; }
 
+        public Task<bool> ValidarDatosCedula(string cedula, string codigoDactilar)
+        {
+            throw new NotImplementedException();
+        }
 
         public Task<bool> ValidarRostro(string rostroBase64)
         {
