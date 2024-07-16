@@ -8,11 +8,11 @@ namespace ApiBanca.Controllers
     public class RegistroCivilController : ApiBaseController
     {
         [HttpPost("validar-cedula")]
-        public async Task<ActionResult> ValidarCedula(ValidarCedula.Comando request)
+        public async Task<ActionResult> ValidarCedulaCodigo(ValidarCedula.DatosValidarCedula request)
         {
             try
             {
-                var resultado = await Mediator.Send(request);
+                var resultado = await Mediator.Send(new ValidarCedula.Comando(request));
                 return Ok(resultado);
             }
             catch (ExcepcionValidacion error)

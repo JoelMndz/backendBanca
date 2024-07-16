@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBanca.Migrations
 {
     [DbContext(typeof(ContextoDB))]
-    [Migration("20240711044341_v3")]
-    partial class v3
+    [Migration("20240716023308_mssql_migration_418")]
+    partial class mssql_migration_418
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

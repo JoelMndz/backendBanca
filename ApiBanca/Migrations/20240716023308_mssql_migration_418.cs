@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ApiBanca.Migrations
 {
     /// <inheritdoc />
-    public partial class v1 : Migration
+    public partial class mssql_migration_418 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,13 +23,14 @@ namespace ApiBanca.Migrations
                     CodigoDactilar = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     Celular = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    Password = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
+                    Password = table.Column<string>(type: "varchar(2048)", unicode: false, maxLength: 2048, nullable: false),
                     Provincia = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     FotoRostroURL = table.Column<string>(type: "varchar(2048)", unicode: false, maxLength: 2048, nullable: false),
                     SituacionLaboral = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     Empresa = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     PaisPagoImpuestos = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     AceptoTerminosYConcidiones = table.Column<bool>(type: "bit", nullable: false),
+                    CodigoVerificado = table.Column<bool>(type: "bit", nullable: false),
                     Inactivo = table.Column<bool>(type: "bit", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
