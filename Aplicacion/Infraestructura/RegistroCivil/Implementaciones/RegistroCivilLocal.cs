@@ -1,4 +1,6 @@
-﻿using Aplicacion.Infraestructura.RegistroCivil.Interfaces;
+﻿using Aplicacion.Infraestructura.Persistencia;
+using Aplicacion.Infraestructura.RegistroCivil.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Buffers.Text;
@@ -11,9 +13,16 @@ namespace Aplicacion.Infraestructura.RegistroCivil.Implementaciones
 {
     public class RegistroCivilLocal : IRegistroCivil
     {
+        private readonly ContextoDB contexto;
+        public RegistroCivilLocal(ContextoDB contexto)
+        {
+            this.contexto = contexto;
+        }
+
         public async Task<bool> ValidarDatosCedula(string cedula, string codigoDactilar)
         {
-            return ValidarCedula(cedula) && ValidarCodigoDactilar(codigoDactilar);
+            var ecuatoriano = await contexto.Ecuatoriano.FirstOrDefaultAsync(x => x.Cedula == cedula && x.CodigoDactilar == codigoDactilar);
+            return ecuatoriano != null;
         }
 
         private bool ValidarCedula(string cedula)

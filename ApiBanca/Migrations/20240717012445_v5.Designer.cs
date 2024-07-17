@@ -4,6 +4,7 @@ using Aplicacion.Infraestructura.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiBanca.Migrations
 {
     [DbContext(typeof(ContextoDB))]
-    partial class ContextoDBModelSnapshot : ModelSnapshot
+    [Migration("20240717012445_v5")]
+    partial class v5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,31 +86,6 @@ namespace ApiBanca.Migrations
                     b.HasIndex("IdUsuario");
 
                     b.ToTable("Cuenta");
-                });
-
-            modelBuilder.Entity("Aplicacion.Dominio.Entidades.RegistroCivil.Ecuatoriano", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Cedula")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("CodigoDactilar")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Ecuatoriano");
                 });
 
             modelBuilder.Entity("Aplicacion.Dominio.Entidades.Usuario.Usuario", b =>

@@ -1,5 +1,6 @@
 ﻿using Aplicacion.Dominio.Entidades.CodigoVerificacion;
 using Aplicacion.Dominio.Entidades.Cuenta;
+using Aplicacion.Dominio.Entidades.RegistroCivil;
 using Aplicacion.Dominio.Entidades.Usuario;
 using Aplicacion.Infraestructura.Persistencia.Configuracion;
 using Aplicacion.Infraestructura.Persistencia.Interceptores;
@@ -27,12 +28,14 @@ namespace Aplicacion.Infraestructura.Persistencia
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Cuenta> Cuenta { get; set; }
         public virtual DbSet<CodigoVerificacion> CodigoVerificacion { get; set; }
+        public virtual DbSet<Ecuatoriano> Ecuatoriano { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UsuarioConfiguracion());
             modelBuilder.ApplyConfiguration(new CuentaConfiguracion());
             modelBuilder.ApplyConfiguration(new CodigoVerificacionConfiguracion());
+            modelBuilder.ApplyConfiguration(new EcuatorianoConfiguracion());
 
             OnModelCreatingPartial(modelBuilder);
         }
