@@ -1,7 +1,6 @@
 ﻿using Aplicacion.Infraestructura.Persistencia;
 using Aplicacion.Infraestructura.RegistroCivil.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Buffers.Text;
 using System.Collections.Generic;
@@ -91,7 +90,7 @@ namespace Aplicacion.Infraestructura.RegistroCivil.Implementaciones
 
         private bool ValidarCodigoDactilar(string codigoDactilar)
         {
-            if (codigoDactilar.IsNullOrEmpty()) return false;
+            if (string.IsNullOrEmpty(codigoDactilar)) return false;
             if (codigoDactilar.Length != 10) return false;
             return true;
         }

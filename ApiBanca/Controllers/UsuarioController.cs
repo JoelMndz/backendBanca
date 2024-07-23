@@ -2,7 +2,6 @@
 using Aplicacion.Caracteristicas.RegistroCivil;
 using Aplicacion.Caracteristicas.Usuario;
 using Aplicacion.Helper.Comunes;
-using Azure.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;

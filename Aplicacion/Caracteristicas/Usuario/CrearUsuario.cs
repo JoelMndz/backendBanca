@@ -5,7 +5,6 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Throw;
 using UsuarioDominio = Aplicacion.Dominio.Entidades.Usuario.Usuario;
 
@@ -41,7 +40,7 @@ namespace Aplicacion.Caracteristicas.Usuario
                 RuleFor(x => x.DatosCrearUsuario.Provincia).NotEmpty().MaximumLength(50);
                 RuleFor(x => x.DatosCrearUsuario.RostroBase64).NotEmpty();
                 RuleFor(x => x.DatosCrearUsuario.SituacionLaboral).NotEmpty().MaximumLength(50);
-                RuleFor(x => x.DatosCrearUsuario.Empresa).Must(x => x.IsNullOrEmpty() || x!.Length <= 50);
+                RuleFor(x => x.DatosCrearUsuario.Empresa).Must(x => string.IsNullOrEmpty(x) || x!.Length <= 50);
                 RuleFor(x => x.DatosCrearUsuario.PaisPagoImpuestos).NotEmpty().MaximumLength(50);
                 RuleFor(x => x.DatosCrearUsuario.AceptoTerminosYConcidiones).NotEmpty();
             }

@@ -35,7 +35,7 @@ namespace Aplicacion
             services.AddDbContext<ContextoDB>(options =>
             {
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                options.UseNpgsql(configuration.GetConnectionString("UriPostgres"),
                     (a) => a.MigrationsAssembly("ApiBanca"));
             },
             ServiceLifetime.Transient);

@@ -42,5 +42,23 @@ namespace ApiBanca.Controllers
                 return BadRequest(new { Mensaje = error.Message });
             }
         }
+
+        [HttpPost("registrar-cedula")]
+        public async Task<ActionResult> RegistrarCedula(AgregarCedula.DatosAgregarCedula request)
+        {
+            try
+            {
+                var resultado = await Mediator.Send(new AgregarCedula.Comando(request));
+                return Ok(resultado);
+            }
+            catch (ExcepcionValidacion error)
+            {
+                return BadRequest(new { Mensaje = error.Message, error.Errors });
+            }
+            catch (Exception error)
+            {
+                return BadRequest(new { Mensaje = error.Message });
+            }
+        }
     }
 }
