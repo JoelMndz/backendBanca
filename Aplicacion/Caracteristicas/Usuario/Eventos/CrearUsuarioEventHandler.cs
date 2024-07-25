@@ -28,7 +28,7 @@ namespace Aplicacion.Caracteristicas.Usuario.Eventos
                 notification.CodigoVerificacion.Usuario.Email, "CODIGO DE VERIFICACIÓN", 
                 $"""
                 <h3>Código: {notification.CodigoVerificacion.Codigo}</h3>
-                <p>El código es válido hasta <strong>{notification.CodigoVerificacion.FechaExpiracion}</strong></p>
+                <p>El codigo caduca en 5 minutos</p>
                 """,
                 cancellationToken);
         }

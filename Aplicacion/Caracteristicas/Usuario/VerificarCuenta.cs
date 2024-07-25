@@ -49,7 +49,7 @@ namespace Aplicacion.Caracteristicas.Usuario
                 codigoVerificacion.Throw(x => new Exception("El codigo no coincide!"))
                     .IfTrue(x => x.Codigo != request.DatosVerificarCuenta.Codigo);
                 codigoVerificacion.Throw(x => new Exception("El codigo ya expiro!"))
-                    .IfTrue(x => DateTime.Compare(x.FechaExpiracion,DateTime.Now) < 0);
+                    .IfTrue(x => DateTimeOffset.Compare(x.FechaExpiracion,DateTimeOffset.Now) < 0);
                 var usuario = await contextoDB.Usuario
                     .Where(x => x.Email == request.DatosVerificarCuenta.Email.ToLower())
                     .FirstAsync(cancellationToken);
